@@ -53,12 +53,15 @@ function merge(leftArr, rightArr) {
     var rightIdx = 0;
     var current = 0;
 
-    while( current < (leftArr.length + rightArr.length)) {
-        if(leftArr[leftIdx] < rightArr[rightIdx]) {
-            mergedArr.push(leftArr[leftIdx]);
+    while( current < leftArr.length + rightArr.length) {
+        const unmerged1 = leftArr[leftIdx] === undefined ? Infinity : leftArr[leftIdx];
+        const unmerged2 = rightArr[rightIdx] === undefined ? Infinity : rightArr[rightIdx];
+
+        if(unmerged1 < unmerged2) {
+            mergedArr.push(unmerged1);
             leftIdx ++;
         } else {
-            mergedArr.push(rightArr[rightIdx]);
+            mergedArr.push(unmerged2);
             rightIdx ++;
         }
         current ++;
