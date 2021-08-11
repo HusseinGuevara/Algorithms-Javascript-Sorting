@@ -42,23 +42,39 @@ const nums3 = [1, 17, 12, 3, 9, 13, 21, 4, 27];
  *    being processed.
  * @returns {number} The index where the smaller section ends.
  */
-function partition(nums = [], left = 0, right = nums.length - 1) {
-    var middleIdx = Math.floor((right - left)/2) + left ;
+function partition(nums, left = 0, right = nums.length - 1) {
+    var middleIdx = Math.floor((left + right) / 2);
+    var pivotValue = nums[middleIdx];
+    let leftIdx = left;
+    let rightIdx = right;
+    console.log(pivotValue);
     
-    // EDGE CASE 
-    if(nums.length <= 1) {
-        return nums
+
+    while(true) {
+
+        while(nums[leftIdx] < pivotValue) {
+            leftIdx ++;
+            
+        }
+
+        while(nums[rightIdx] > pivotValue) {
+            rightIdx --;
+            
+        } 
+
+        if(leftIdx >= rightIdx) {
+            return nums;
+        }
+        
+        [nums[leftIdx], nums[rightIdx]] = [nums[rightIdx], nums[leftIdx]];
+        leftIdx ++;
+        rightIdx --;
+        
+        
+        
+        
     }
-    while(nums[left] < nums[middleIdx]) {
-        left ++;
-    }
-    while(nums[right] > nums[middleIdx]) {
-        right ++;
-    }
-    if(right === left || left > right) {
-        return nums;
-    }
-    [nums[left], nums[right]] = [nums[right], nums[left]];
-    return partition(nums);
 }
 console.log(partition(nums1));
+console.log(partition(nums2));
+console.log(partition(nums3));
