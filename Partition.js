@@ -47,7 +47,7 @@ function partition(nums, left = 0, right = nums.length - 1) {
     var pivotValue = nums[middleIdx];
     let leftIdx = left;
     let rightIdx = right;
-    console.log(pivotValue);
+    // console.log(pivotValue);
     
 
     while(true) {
@@ -63,7 +63,7 @@ function partition(nums, left = 0, right = nums.length - 1) {
         } 
 
         if(leftIdx >= rightIdx) {
-            return nums;
+            return rightIdx;
         }
         
         [nums[leftIdx], nums[rightIdx]] = [nums[rightIdx], nums[leftIdx]];
@@ -78,3 +78,8 @@ function partition(nums, left = 0, right = nums.length - 1) {
 console.log(partition(nums1));
 console.log(partition(nums2));
 console.log(partition(nums3));
+
+module.exports = {
+    partition,
+};
+
